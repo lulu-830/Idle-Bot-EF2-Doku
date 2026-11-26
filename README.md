@@ -1,54 +1,34 @@
 # Idle-Bot für Endless Frontier 2 – Dokumentation
 
-Dokumentation zu einem **Python-Hilfsprogramm**, das das Idle-Spiel Endless Frontier 2 (EF2) im Emulator **MuMu Player** über **ADB** bedient. Nur Beschreibung, kein Quellcode.
+**Python-Hilfsprogramm, das das Idle-Spiel Endless Frontier 2 (EF2) im Emulator MuMu Player über ADB bedient.** Es macht Screenshots, erkennt per Bildanalyse und Texterkennung, was auf dem Bildschirm ist, und tippt entsprechend. So laufen wiederkehrende Aufgaben von selbst.
 
-## Idee
+> Nur Dokumentation, kein Quellcode.
 
-Das Programm macht Screenshots über ADB, erkennt per Bildanalyse und Texterkennung, was auf dem Bildschirm ist, und tippt entsprechend. So laufen wiederkehrende Aufgaben im Idle-Spiel von selbst.
+![Spielbildschirm im Emulator](bilder/spielbildschirm.png)
 
-## Bilder
+## Inhalt
 
-![Spielbildschirm im Emulator (1600×900)](bilder/spielbildschirm.png)
-
-![Kontrollpanel](bilder/kontrollpanel.png)
-
-## Funktionen
-
-- **Helden leveln:** erkennt aktive „+1“-Buttons in den sichtbaren Heldenzeilen und tippt sie mehrfach. Optional wird die Liste gescrollt, um auch weitere Helden zu erreichen.
-- **Periodische Taps:** feste Positionen im einstellbaren Intervall, zum Beispiel für Fähigkeiten, Chat-Bonus und Wut.
-- **Rebirth:** liest den Timer neben dem Stoppuhr-Symbol per Windows-OCR und startet ab einer einstellbaren Minute den Rebirth, samt Bestätigung.
-- **Relic Forge:** öffnet bis zu einer einstellbaren Minute das Relic-Forge-Minispiel und startet dafür das AutoIt-Skript, das die Züge berechnet (siehe Relic-Forge-Doku). Nach „Run Over“ kann es ein neues Spiel starten.
-- **Spielvordergrund:** prüft, ob das Spiel im Vordergrund ist, und holt MuMu bei Bedarf nach vorn.
-
-## Kommandozeile
-
-| Aufruf | Wirkung |
+| Seite | Thema |
 |---|---|
-| `python bot.py` | Bot starten, Strg+C beendet |
-| `python bot.py shot` | Screenshot nach `shots/latest.png` |
-| `python bot.py tap X Y` | Einmal an eine Koordinate tippen |
-| `python bot.py once` | Genau eine Runde, zum Testen |
+| [docs/einrichtung.md](docs/einrichtung.md) | Voraussetzungen und erster Start |
+| [docs/funktionen.md](docs/funktionen.md) | Alle Abläufe im Detail |
+| [docs/bedienung.md](docs/bedienung.md) | Kommandozeile und Kontrollpanel |
+| [docs/einstellungen.md](docs/einstellungen.md) | settings.json und Konstanten |
+| [docs/technik.md](docs/technik.md) | ADB, Bilderkennung, OCR |
+| [docs/grenzen.md](docs/grenzen.md) | Grenzen und Hinweise |
 
-Koordinaten beziehen sich auf einen Screenshot von 1600×900 im Querformat.
+## Aufbau
+
+![Programmteile](bilder/aufbau.png)
+
+## Eine Runde
+
+![Ablauf einer Runde](bilder/ablauf.png)
+
+Der Bot arbeitet in Runden mit einer Pause von 1,5 Sekunden. In jeder Runde prüft er zuerst, ob das Spiel im Vordergrund ist, erledigt dann die fälligen Aufgaben und tippt.
 
 ## Kontrollpanel
 
-Ein kleines Fenster mit Schaltern, ein- und ausblendbar mit **Numpad 0** (NumLock an):
+![Kontrollpanel](bilder/kontrollpanel.png)
 
-- Bot pausieren, Rebirth automatisch und Rebirth-Minute
-- Relic Forge spielen, Forge-Minute, „Play Again“ nach Spielende
-- Helden leveln
-- Schalter für das Forge-Skript: Hammer automatisch, tote Relikte wegschlagen, Stern automatisch, Lernmodell
-
-Die Schalter des Bots gelten sofort und werden in `settings.json` gespeichert. Die Forge-Schalter stehen in `RelicForge.ini` und gelten nach einem Neustart des Forge-Skripts.
-
-## Voraussetzungen
-
-- Windows, MuMu Player mit aktiviertem ADB
-- Python mit OpenCV, NumPy und `winocr`
-- AutoIt für das Forge-Skript
-
-## Grenzen
-
-- Alle Koordinaten sind auf eine feste Auflösung abgestimmt.
-- Das Programm tippt selbstständig. Prüfe, ob die Nutzungsbedingungen des Spiels das erlauben.
+Ein kleines Fenster mit Schaltern für den Bot und für das Forge-Skript. Mit **Numpad 0** (NumLock an) lässt es sich ein- und ausblenden.
