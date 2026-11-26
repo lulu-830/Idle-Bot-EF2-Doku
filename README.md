@@ -6,6 +6,12 @@ Dokumentation zu einem **Python-Hilfsprogramm**, das das Idle-Spiel Endless Fron
 
 Das Programm macht Screenshots über ADB, erkennt per Bildanalyse und Texterkennung, was auf dem Bildschirm ist, und tippt entsprechend. So laufen wiederkehrende Aufgaben im Idle-Spiel von selbst.
 
+## Bilder
+
+![Spielbildschirm im Emulator (1600×900)](bilder/spielbildschirm.png)
+
+![Kontrollpanel](bilder/kontrollpanel.png)
+
 ## Funktionen
 
 - **Helden leveln:** erkennt aktive „+1“-Buttons in den sichtbaren Heldenzeilen und tippt sie mehrfach. Optional wird die Liste gescrollt, um auch weitere Helden zu erreichen.
